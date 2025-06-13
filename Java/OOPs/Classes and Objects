@@ -1,0 +1,26 @@
+//Demo program of classes and objects
+import java.util.Scanner;
+class Student{
+    int studentid;
+    String studentname;
+    Scanner sc = new Scanner(System.in);
+
+    public void acceptDetails() {
+        System.out.println("Enter student id:");
+        studentid = sc.nextInt();
+        System.out.println("Enter student name:");
+        studentname = sc.next();
+    }
+
+    public void displayDetails() {
+        System.out.println("Student id is:" + studentid);
+        System.out.println("student name is:" + studentname);
+    }
+}
+public class Main{
+    public static void main(String args[]){
+        Student st=new Student();
+        st.acceptDetails();
+        st.displayDetails();
+    }
+}
