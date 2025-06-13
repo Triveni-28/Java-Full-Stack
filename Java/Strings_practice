@@ -1,0 +1,87 @@
+public class StringProblems {
+
+    public static void main(String[] args) {
+
+        // 1. Reverse a string
+        String str = "hello";
+        String reversed = new StringBuilder(str).reverse().toString();
+        System.out.println("Reversed String: " + reversed);
+
+        // 2. Check if a string is a palindrome
+        String palin = "madam";
+        boolean isPalindrome = palin.equals(new StringBuilder(palin).reverse().toString());
+        System.out.println("Is Palindrome: " + isPalindrome);
+
+        // 3. Count vowels and consonants
+        String text = "HelloWorld";
+        int vowels = 0, consonants = 0;
+        for (char c : text.toLowerCase().toCharArray()) {
+            if ("aeiou".indexOf(c) != -1) vowels++;
+            else if (Character.isLetter(c)) consonants++;
+        }
+        System.out.println("Vowels: " + vowels + ", Consonants: " + consonants);
+
+        // 4. Remove duplicates from a string
+        String dup = "programming";
+        StringBuilder noDup = new StringBuilder();
+        for (int i = 0; i < dup.length(); i++) {
+            char ch = dup.charAt(i);
+            if (noDup.indexOf(String.valueOf(ch)) == -1) noDup.append(ch);
+        }
+        System.out.println("String after removing duplicates: " + noDup);
+
+        // 5. Check if two strings are anagrams
+        String a = "listen";
+        String b = "silent";
+        boolean isAnagram = a.length() == b.length() &&
+            sortString(a).equals(sortString(b));
+        System.out.println("Are Anagrams: " + isAnagram);
+
+        // 6. Count frequency of characters in a string
+        String freqStr = "aabbccdde";
+        int[] freq = new int[256]; // ASCII size
+        for (char c : freqStr.toCharArray()) freq[c]++;
+        for (int i = 0; i < 256; i++) {
+            if (freq[i] > 0)
+                System.out.println((char)i + " => " + freq[i]);
+        }
+
+        // 7. Find the first non-repeating character
+        String nonRepeat = "aabbcddee";
+        for (char c : nonRepeat.toCharArray()) {
+            if (nonRepeat.indexOf(c) == nonRepeat.lastIndexOf(c)) {
+                System.out.println("First non-repeating character: " + c);
+                break;
+            }
+        }
+
+        // 8. Check if string contains only digits
+        String numeric = "12345";
+        boolean onlyDigits = numeric.matches("\\d+");
+        System.out.println("Contains only digits: " + onlyDigits);
+
+        // 9. Convert string to integer (without using Integer.parseInt)
+        String numStr = "456";
+        int number = 0;
+        for (char c : numStr.toCharArray()) {
+            number = number * 10 + (c - '0');
+        }
+        System.out.println("Converted Integer: " + number);
+
+        // 10. Print all substrings of a string
+        String sub = "abc";
+        System.out.println("All substrings:");
+        for (int i = 0; i < sub.length(); i++) {
+            for (int j = i + 1; j <= sub.length(); j++) {
+                System.out.println(sub.substring(i, j));
+            }
+        }
+    }
+
+    // Helper function to sort a string (used in anagram check)
+    private static String sortString(String input) {
+        char[] chars = input.toCharArray();
+        java.util.Arrays.sort(chars);
+        return new String(chars);
+    }
+}
